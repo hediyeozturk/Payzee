@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayzeeCaseStudy.API", "PayzeeCaseStudy.API\PayzeeCaseStudy.API.csproj", "{81FFD256-7717-49DB-BA57-82FC1DA1BCE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayzeeCaseStudy.API", "PayzeeCaseStudy.API\PayzeeCaseStudy.API.csproj", "{81FFD256-7717-49DB-BA57-82FC1DA1BCE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayzeeCaseStudy.Data", "PayzeeCaseStudy.Data\PayzeeCaseStudy.Data.csproj", "{66D8818F-46B6-4EF2-B677-EE15C200C75D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{81FFD256-7717-49DB-BA57-82FC1DA1BCE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81FFD256-7717-49DB-BA57-82FC1DA1BCE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81FFD256-7717-49DB-BA57-82FC1DA1BCE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D8818F-46B6-4EF2-B677-EE15C200C75D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D8818F-46B6-4EF2-B677-EE15C200C75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D8818F-46B6-4EF2-B677-EE15C200C75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D8818F-46B6-4EF2-B677-EE15C200C75D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
