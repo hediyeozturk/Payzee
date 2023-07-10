@@ -5,8 +5,6 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayzeeCaseStudy.API", "PayzeeCaseStudy.API\PayzeeCaseStudy.API.csproj", "{81FFD256-7717-49DB-BA57-82FC1DA1BCE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayzeeCaseStudy.Data", "PayzeeCaseStudy.Data\PayzeeCaseStudy.Data.csproj", "{66D8818F-46B6-4EF2-B677-EE15C200C75D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayzeeCaseStudy.Entity", "PayzeeCaseStudy.Entity\PayzeeCaseStudy.Entity.csproj", "{BCC29B51-8990-4800-94A3-EAF81BC3CDB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayzeeCaseStudy.BL", "PayzeeCaseStudy.BL\PayzeeCaseStudy.BL.csproj", "{134BFC5A-B015-4194-9791-BE7C3038A48D}"
@@ -21,10 +19,6 @@ Global
 		{81FFD256-7717-49DB-BA57-82FC1DA1BCE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81FFD256-7717-49DB-BA57-82FC1DA1BCE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81FFD256-7717-49DB-BA57-82FC1DA1BCE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66D8818F-46B6-4EF2-B677-EE15C200C75D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66D8818F-46B6-4EF2-B677-EE15C200C75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66D8818F-46B6-4EF2-B677-EE15C200C75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66D8818F-46B6-4EF2-B677-EE15C200C75D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCC29B51-8990-4800-94A3-EAF81BC3CDB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BCC29B51-8990-4800-94A3-EAF81BC3CDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCC29B51-8990-4800-94A3-EAF81BC3CDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
