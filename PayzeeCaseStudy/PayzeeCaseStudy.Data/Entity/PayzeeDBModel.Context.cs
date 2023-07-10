@@ -15,19 +15,32 @@ namespace PayzeeCaseStudy.Data.Entity
     
     public partial class PayzeeDBEntities : DbContext
     {
+        public PayzeeDBEntities(string connString)
+            : base(connString)
+        {
+        }
+
         public PayzeeDBEntities()
             : base("name=PayzeeDBEntities")
         {
         }
-    
+
+        //public PayzeeDBEntities()
+        //{
+        //}
+
+        //public PayzeeDBEntities(DbContextOptions<CompanyEntities> options)
+        //    : base(options)
+        //{
+        //}
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<TransactionType> TransactionTypes { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
     }
 }

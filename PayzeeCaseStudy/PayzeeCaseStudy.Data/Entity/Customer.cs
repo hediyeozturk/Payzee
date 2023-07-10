@@ -25,8 +25,8 @@ namespace PayzeeCaseStudy.Data.Entity
         public string Surname { get; set; }
         public Nullable<System.DateTime> BirthDate { get; set; }
         public string IdentityNo { get; set; }
-        public Nullable<bool> IdentityNoVerified { get; set; }
-        public string Status { get; set; }
+        public bool IdentityNoVerified { get; set; }
+        public Nullable<int> Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaction> Transactions { get; set; }

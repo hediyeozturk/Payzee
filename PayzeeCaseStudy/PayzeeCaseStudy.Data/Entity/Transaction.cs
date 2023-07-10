@@ -24,7 +24,7 @@ namespace PayzeeCaseStudy.Data.Entity
         public string ResponseMessage { get; set; }
         public string Status { get; set; }
     
-        public virtual Customer Customer { get; set; }
         public virtual TransactionType TransactionType { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

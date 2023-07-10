@@ -4,18 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PayzeeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PayzeeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerId" />
           </Key>
           <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="BirthDate" Type="date" />
           <Property Name="IdentityNo" Type="nvarchar" MaxLength="11" />
-          <Property Name="IdentityNoVerified" Type="bit" />
-          <Property Name="Status" Type="nvarchar" MaxLength="10" />
+          <Property Name="IdentityNoVerified" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -86,24 +86,10 @@
             <End Role="Transaction" EntitySet="Transaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PayzeeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="CustomerId" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BirthDate" Type="DateTime" Precision="0" />
-          <Property Name="IdentityNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="IdentityNoVerified" Type="Boolean" />
-          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_Customer" FromRole="Customer" ToRole="Transaction" />
-        </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -127,8 +113,8 @@
           <Property Name="ResponseCode" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="ResponseMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_Transaction_Customer" FromRole="Transaction" ToRole="Customer" />
           <NavigationProperty Name="TransactionType" Relationship="Self.FK_Transaction_TransactionType" FromRole="Transaction" ToRole="TransactionType" />
+          <NavigationProperty Name="Customer" Relationship="PayzeeDBModel.FK_Transaction_Customer" FromRole="Transaction" ToRole="Customer" />
         </EntityType>
         <EntityType Name="TransactionType">
           <Key>
@@ -138,18 +124,6 @@
           <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Transaction" Relationship="Self.FK_Transaction_TransactionType" FromRole="TransactionType" ToRole="Transaction" />
         </EntityType>
-        <Association Name="FK_Transaction_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerId" />
-            </Principal>
-            <Dependent Role="Transaction">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Transaction_TransactionType">
           <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
           <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
@@ -163,38 +137,50 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="PayzeeDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Transactions" EntityType="Self.Transaction" />
           <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
-          <AssociationSet Name="FK_Transaction_Customer" Association="Self.FK_Transaction_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Transaction" EntitySet="Transactions" />
-          </AssociationSet>
           <AssociationSet Name="FK_Transaction_TransactionType" Association="Self.FK_Transaction_TransactionType">
             <End Role="TransactionType" EntitySet="TransactionTypes" />
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
+          <EntitySet Name="Customers" EntityType="PayzeeDBModel.Customer" />
+          <AssociationSet Name="FK_Transaction_Customer" Association="PayzeeDBModel.FK_Transaction_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="IdentityNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityNoVerified" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Transactions" Relationship="PayzeeDBModel.FK_Transaction_Customer" FromRole="Customer" ToRole="Transaction" />
+        </EntityType>
+        <Association Name="FK_Transaction_Customer">
+          <End Type="PayzeeDBModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="PayzeeDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PayzeeDBModelStoreContainer" CdmEntityContainer="PayzeeDBEntities">
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="PayzeeDBModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="IdentityNo" ColumnName="IdentityNo" />
-                <ScalarProperty Name="IdentityNoVerified" ColumnName="IdentityNoVerified" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="PayzeeDBModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -226,6 +212,19 @@
               <MappingFragment StoreEntitySet="TransactionType">
                 <ScalarProperty Name="TypeId" ColumnName="TypeId" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="PayzeeDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IdentityNoVerified" ColumnName="IdentityNoVerified" />
+                <ScalarProperty Name="IdentityNo" ColumnName="IdentityNo" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

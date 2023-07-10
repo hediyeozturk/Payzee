@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e11ec7c3e849420ba0dd925852c806ae" Name="Diagram1">
-        <EntityTypeShape EntityType="PayzeeDBModel.Customer" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PayzeeDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PayzeeDBModel.Transaction" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="PayzeeDBModel.TransactionType" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <AssociationConnector Association="PayzeeDBModel.FK_Transaction_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="PayzeeDBModel.FK_Transaction_TransactionType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PayzeeDBModel.Customer" Width="1.5" PointX="0.75" PointY="1.25" />
+        <AssociationConnector Association="PayzeeDBModel.FK_Transaction_Customer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
